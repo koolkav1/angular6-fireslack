@@ -1,3 +1,17 @@
-<p>
-  register works!
-</p>
+<div class="page-wrapper">
+  <div class="page-header">
+    <h1><a><img src="../../../assets/logo.png" alt="" class="logo-img"></a>Register</h1>
+  </div>
+  <form  (ngSubmit)="onRegister(r)" #r="ngForm">
+    <div class="input-group">
+      <input type="text" name="displayName" class="form-control" required ngModel placeholder="Enter your display Name">
+    </div>
+    <div class="input-group">
+      <input type="email" name="email" class="form-control" required ngModel>
+    </div>
+    <div class="input-group">
+      <input type="password" class="form-control" name="password" required ngModel>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+</div>
