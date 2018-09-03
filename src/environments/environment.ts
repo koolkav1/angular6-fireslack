@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyAZQ9safmKpggo09eydshbQWOHdgZNHHzk',
+    authDomain: 'angular6-slack.firebaseapp.com',
+    databaseURL: 'https://angular6-slack.firebaseio.com',
+    projectId: 'angular6-slack',
+    storageBucket: 'angular6-slack.appspot.com',
+    messagingSenderId: '804373228750'
+  }
 };
 
 /*
