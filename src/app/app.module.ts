@@ -26,6 +26,7 @@ import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { ChannelService } from './services/channel.service';
 import { MessageService } from './services/message.service';
+import { ChannelsComponent } from './room/sidebar/channels/channels.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { MessageService } from './services/message.service';
     CreateChannelComponent,
     DirectMessageComponent,
     MessageComponent,
-    SidebarComponent
+    SidebarComponent,
+    ChannelsComponent
   ],
   imports: [
     BrowserModule,

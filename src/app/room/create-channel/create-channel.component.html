@@ -1,3 +1,12 @@
-<p>
-  create-channel works!
-</p>
+<div class="container" style="margin-left:300px;">
+ <div class="page-header">
+   <h1><a><img src="../../../assets/logo.png" class="log-img"></a>Create Channel</h1>
+ </div>
+ <form #createChannelForm="ngForm" class="form-inline">
+   <div class="form-group">
+     <label for="displayName" name="displayName">Channel Name</label>
+     <input type="text" class="form-control" [(ngModel)]="channelName" name="displayName" placeholder="Enter username">
+   </div>
+   <button class="btn btn-primary" type="submit" [disabled]="!channelName" (click)="updateChannel()">Create Channel</button>
+ </form>
+</div>

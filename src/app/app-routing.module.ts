@@ -11,7 +11,7 @@ import { NgModule } from '@angular/core';
 export const appRoutes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent},
-    { path: 'editProfile', component: ProfileComponent},
+    { path: 'editprofile', component: ProfileComponent},
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
     { path: 'chatroom/channels', component: RoomComponent, children: [
