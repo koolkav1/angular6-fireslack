@@ -99,7 +99,7 @@ currentUser2Id = this.user2IdSource.asObservable();
   }
   private getPath(user1Id: any, user2Id: any){
     const newPostKey = this.db.database.ref().child('userMessages').push().key;
-    let path: string = '';
+    let path;
     if(user1Id < user2Id){
       console.log('User2ID is greater');
       path = `userMessages/${user2Id}/${user1Id}/${newPostKey}`;

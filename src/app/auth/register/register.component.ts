@@ -20,16 +20,17 @@ export class RegisterComponent implements OnInit {
     const displayName = form.value.displayName;
     const email = form.value.email;
     const password = form.value.password;
-    this.authService.signup(displayName,email,password).subscribe(
-      auth => {
-        if(auth) {
-          this.notifier.notify('success', 'you have successfully been registered');
+    this.authService.registerUser(email,password)
+    .then(()=> {
+      this.notifier.notify('success', 'you have successfully been registered');
           this.router.navigate(['editProfile']);
-        } else {
-          this.notifier.notify('error', 'Registration was unsuccessful');
-        }
-      }
-    )
+    })
+    .catch(err => {
+      this.notifier.notify('error', 'Registration was unsuccessful');
+      console.log(err);
+    })
+    
+ 
   }
   ngOnInit() {
   }
