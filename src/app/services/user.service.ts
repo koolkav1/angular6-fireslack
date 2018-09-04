@@ -31,7 +31,7 @@ public authState: any;
           displayName: dName,
           status: 'online'
         })
-        .then( ()=> this.router.navigate(['chatRoom/channels']) )
+        .then( ()=> this.router.navigate(['chatroom/channels']) )
         .catch( err => console.log(err));
       }
       else {

@@ -23,8 +23,6 @@ selectedIndexUser: number;
 private subscription: Subscription;
   constructor(
     private db: AngularFireDatabase,
-    private channelService: ChannelService,
-    private router: Router,
     private messageService: MessageService,
     private authService: AuthService,
     private userService: UserService
@@ -48,13 +46,13 @@ private subscription: Subscription;
   sendUser2Id(user2Id: any){
     this.messageService.getUser2Id(user2Id);
   }
-  private displayData() {
+  public displayData() {
     this.db.list('/channels').valueChanges().subscribe(data => {
       this.channels = data;
       console.log(data)
     });
   }
-  private getUsers() {
+  public getUsers() {
     this.userService.getAllUsers().subscribe(users => {
       this.users = users;
       console.log(this.users[0].displayName);

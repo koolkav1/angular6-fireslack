@@ -4,6 +4,8 @@ import { Message } from '../models/message.model';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from '../models/user.model';
+import { AngularFirestore } from 'angularfire2/firestore';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +26,7 @@ private user2IdSource = new BehaviorSubject<string>("");
 currentUser2Id = this.user2IdSource.asObservable();
 
 
-  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase,
+  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase
   ) {
       this.afAuth.authState.subscribe( auth=> {
         if(auth !== undefined && auth !== null){
@@ -41,11 +43,11 @@ currentUser2Id = this.user2IdSource.asObservable();
     this.getUserData().subscribe( data => {
       this.userData = data;
       console.log(`data : ${this.userData.displayName}`);
-
+      
       const newPostKey = this.db.database.ref().child('channelMessages').push().key;
       let path = `${channelId}/channelMessages/${newPostKey}`;
 
-      const timeStamp: any = this.db.database['ServerValue']['TIMESTAMP'];
+      const timeStamp: any = firebase.database.ServerValue.TIMESTAMP;
       console.log(timeStamp);
       let messageData: Message ={
         messageId: newPostKey,
@@ -71,7 +73,7 @@ currentUser2Id = this.user2IdSource.asObservable();
   }
   storeDirectMessage(user2Id: any, message: string){
     this.afAuth.authState.subscribe(users => {
-      const timeStamp: any = this.db.database['ServerValue']['TIMESTAMP'];
+      const timeStamp: any = firebase.database.ServerValue.TIMESTAMP;
       let path: string = this.getPath(this.authState.uid, user2Id);
       console.log(`This is the path ${path}`);
 

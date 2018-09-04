@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, of, from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnDestroy {
   public currentUser:Observable<User | null>;
   public currentUserSnapshot: User | null;
   
@@ -50,18 +51,20 @@ export class AuthService {
       .catch((err) => false)
     );
   }
-  public login(email: string, password: string){
+  public login(email: string, password: string) : Observable<boolean>{
     return from(
       this.afAuth.auth.signInWithEmailAndPassword(email, password)
-      .then((user) => {
+      .then((user)=> {
         const userRef: AngularFirestoreDocument<User> = this.db.doc(`users/${user.user.uid}`);
         const userStatus = {
           status: 'online'
         }
         userRef.update(userStatus);
+        return true;
       })
-      .catch((err) => false)
-
+      .catch((err)=> {
+        console.log(err)
+        return false;})
     );
   }
   public logout() {
@@ -78,5 +81,8 @@ export class AuthService {
     this.currentUser.subscribe(user => {
       this.currentUserSnapshot = user;
     });
+  }
+  ngOnDestroy(){
+    this.logout();
   }
 }

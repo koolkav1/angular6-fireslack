@@ -18,9 +18,11 @@ export class LoginComponent implements OnInit {
      }
   onSubmit(form: NgForm){
     const email = form.value.email;
+    console.log(email);
     const password = form.value.password;
+    console.log(password)
     this.authService.login(email,password).subscribe(
-      auth => {
+      (auth) => {
         if(auth){
           this.notifier.notify('success', 'Login is successful');
           this.router.navigate(['chatroom/channels']);
@@ -28,12 +30,7 @@ export class LoginComponent implements OnInit {
         } else {
           this.notifier.notify('error', 'Unsuccessful login');
         }
-      }
-    );
-    
-      
-   
-   
+      });
   }
   ngOnInit() {
   }
